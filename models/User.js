@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const userSchema = new mongoose.Schema(
     {
-        name: {
+        username: {
             type: String,
             required: true,
             trim: true

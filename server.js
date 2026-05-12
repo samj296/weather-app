@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const userRoutes = require('./routes/userRoutes')
+const passport = require("./auth/passport")
 
 // routes
 
@@ -18,6 +20,7 @@ const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
 
 //imp middleware
+app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 app.use(
@@ -28,12 +31,12 @@ app.use(
     })
 );
 
-app.use(passport.initialized());
+app.use(passport.initialize());
 app.use(passport.session());
 
 //Routes
 
-
+app.use("/", userRoutes)
 
 
 // errorHandler
